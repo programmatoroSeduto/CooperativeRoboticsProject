@@ -24,10 +24,10 @@
 
 ## Exercise 5: Floating Manipulation
 
-[**Exercise 5.1**](https://github.com/programmatoroSeduto/CooperativeRoboticsProject/tree/ex5part1): Adding mission phases
-[**Exercise 5.2**](https://github.com/programmatoroSeduto/CooperativeRoboticsProject/tree/ex5part2): Adding an optimization control objective
+- [**Exercise 5.1**](https://github.com/programmatoroSeduto/CooperativeRoboticsProject/tree/ex5part1): Adding mission phases
+- [**Exercise 5.2**](https://github.com/programmatoroSeduto/CooperativeRoboticsProject/tree/ex5part2): Adding an optimization control objective
 
 
 ## Exercise 6:  Floating Manipulation with Arm-Vehicle Coordination Scheme
 
-[**Exercise 6.1**](https://github.com/programmatoroSeduto/CooperativeRoboticsProject/tree/ex6part1): Adding the parallel arm-vehicle coordination scheme
+- [**Exercise 6.1**](https://github.com/programmatoroSeduto/CooperativeRoboticsProject/tree/ex6): Adding the parallel arm-vehicle coordination scheme
