@@ -77,7 +77,6 @@ uvms.eTt = eye(4);
 uvms.q_m = ( uvms.jlmin + uvms.jlmax ) / 2;
 % joint limit neighborhood
 uvms.eps = 0.9 * ( uvms.jlmax - uvms.jlmin );
-% uvms.eps = 0.9 * min( abs(uvms.jlmax), abs(uvms.jlmin) );
 
 tic
 for t = 0:deltat:end_time
@@ -100,10 +99,10 @@ for t = 0:deltat:end_time
     
     % ---
     
+    % joint limit constraint
+    [Qp, ydotbar] = iCAT_task(uvms.A.cjoint,    uvms.Jcjoint,  Qp, ydotbar, uvms.xdot.cjoint,  0.0001,   0.01, 10);
     % zero velocity constraint
     [Qp, ydotbar] = iCAT_task(uvms.A.zero,    uvms.Jzero,  Qp, ydotbar, uvms.xdot.zero,  0.0001,   0.01, 10);
-	% joint limit constraint
-    [Qp, ydotbar] = iCAT_task(uvms.A.cjoint,    uvms.Jcjoint,  Qp, ydotbar, uvms.xdot.cjoint,  0.0001,   0.01, 10);
     % minimum altitude
     [Qp, ydotbar] = iCAT_task(uvms.A.ma,    uvms.Jma,  Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);
     % horizontal attitude

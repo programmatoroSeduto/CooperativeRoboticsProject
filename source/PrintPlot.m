@@ -27,10 +27,10 @@ title( "Activation Functions", "All the activation functions" );
 hold on;
 % plot( [0, plt.end_time], [1, 1], ':' );
 plot( plt.t, plt.A.zero, ':g' );
-plot( plt.t, plt.A.min_alt, '-b' );
+% plot( plt.t, plt.A.min_alt, '-b' );
 plot( plt.t, plt.A.hor_ctrl, '-r' );
-plot( plt.t, plt.A.align, '-m' );
-plot( plt.t, plt.A.land, '-.b' );
+% plot( plt.t, plt.A.align, '-m' );
+% plot( plt.t, plt.A.land, '-.b' );
 plot( plt.t, plt.A.pos, '--b' );
 plot( plt.t, plt.A.orient, '--r' );
 plot( plt.t, plt.A.t, '-.k' );
@@ -38,10 +38,7 @@ hold off;
 ylim( [0, 1.1] )
 legend( ...
     'zero velocity constraint', ...
-    'minimum altitude', ...
     'horizontal attitude', ...
-    'alignment to the target', ...
-    'zero altitude', ...
     'vehicle position control -- x', ...
     '-- y', ...
     '-- z', ...
@@ -52,6 +49,7 @@ legend( ...
 
 
 % PLOT -- minimum altitude and altitude control task
+%{
 idx_plot = idx_plot + 1;
 figure( idx_plot ), grid on;
 % title( "plot(" + idx_plot + ") " + "Activation Functions", "minimum altitude Vs. altitude control task" );
@@ -63,7 +61,7 @@ hold off;
 legend( ...
     'minimum altitude', ...
     'zero altitude' )
-
+%}
 
 % PLOT -- end effector position
 idx_plot = idx_plot + 1;
@@ -78,6 +76,24 @@ legend( ...
     'Xe', ...
     'Ye', ...
     'Ze' );
+
+% PLOT -- end effector position
+idx_plot = idx_plot + 1;
+figure( idx_plot ), grid on;
+title( "Preferred Shape Task Activation" );
+hold on;
+plot( plt.t, plt.A.sh );
+hold off;
+legend( "Aq_1", "Aq_2", "Aq_3", "Aq_4" );
+
+% PLOT -- joint values
+idx_plot = idx_plot + 1;
+figure( idx_plot ), grid on;
+title( "Joint Positions" );
+hold on;
+plot( plt.t, plt.q );
+hold off;
+legend( "q_1", "q_2", "q_3", "q_4", "q_5", "q_6", "q_7" );
 
 
 % PLOT -- (row 1) position and (row 2) orientation
