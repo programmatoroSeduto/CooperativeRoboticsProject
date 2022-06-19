@@ -38,6 +38,9 @@ uvms.Jt = [uvms.Jt_a uvms.Jt_v];
 
 % ---
 
+% zero velocity constraint
+uvms.Jzero = [ zeros(6, 7), [uvms.wTv(1:3, 1:3); zeros(3)], [zeros(3); uvms.wTv(1:3, 1:3)] ];
+
 % vehicle position and orientation jacobian (projected on <w>)
 uvms.Jv_l = [zeros(3,7) uvms.wTv(1:3,1:3) zeros(3)];
 uvms.Jv_a = [zeros(3,7) zeros(3) uvms.wTv(1:3,1:3)];

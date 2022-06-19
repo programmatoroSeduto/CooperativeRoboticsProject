@@ -12,6 +12,9 @@ uvms.tool_lin = norm( lin );
 
 % ---
 
+% zero velocity constraint
+uvms.xdot.zero = 0.5 * ( zeros(6, 1) - uvms.p_dot );
+
 % reference for vehicle position control task
 [ang_v, lin_v] = CartError(uvms.wTgv , uvms.wTv);
 uvms.xdot.v_l = 0.5 * lin_v;

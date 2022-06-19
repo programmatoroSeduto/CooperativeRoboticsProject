@@ -6,7 +6,7 @@ close all
 
 % Simulation variables (integration and final time)
 deltat = 0.005;
-end_time = 35;
+end_time = 45;
 loop = 1;
 maxloops = ceil(end_time/deltat);
 
@@ -89,7 +89,9 @@ for t = 0:deltat:end_time
     Qp = eye(13); 
     
     % ---
-
+    
+    % zero velocity constraint
+    [Qp, ydotbar] = iCAT_task(uvms.A.zero,    uvms.Jzero,  Qp, ydotbar, uvms.xdot.zero,  0.0001,   0.01, 10);
     % minimum altitude
     [Qp, ydotbar] = iCAT_task(uvms.A.ma,    uvms.Jma,  Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);
     % horizontal attitude

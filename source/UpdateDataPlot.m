@@ -1,6 +1,8 @@
 function [ plt ] = UpdateDataPlot( plt, uvms, t, loop )
 
 % PLOT -- activation functions
+% zero velocity constraint
+plt.A.zero(:, loop) = uvms.A.zero(1, 1);
 % minimum altitude
 plt.A.min_alt(:, loop) = uvms.A.ma;
 % horizontal attitude
@@ -22,6 +24,12 @@ plt.A.t(:, loop) = [ uvms.A.t(1, 1) uvms.A.t(2, 2) uvms.A.t(3, 3) ...
 plt.e_pos(:, loop) = uvms.wTe( 1:3, 4 );
 % orientation
 % plt.e_orient(:, loop) = uvms.p( 4:6 );
+
+% PLOT -- manipulator configuration
+% configuration
+plt.q(:, loop) = uvms.q;
+% derivative of the configuration vector
+plt.q_dot(:, loop) = uvms.q_dot;
 
 % PLOT -- position and orientation
 % position

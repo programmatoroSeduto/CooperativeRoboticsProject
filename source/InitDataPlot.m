@@ -6,6 +6,8 @@ plt.t = 0:deltat:end_time;
 plt.end_time = end_time;
 
 % PLOT -- activation functions
+% zero velocity constraint
+plt.A.zero = zeros(1, maxloops);
 % minimum altitude
 plt.A.min_alt = zeros(1, maxloops);
 % horizontal attitude
@@ -26,6 +28,12 @@ plt.A.t = zeros(6, maxloops);
 plt.e_pos = zeros(3, maxloops);
 % orientation
 % plt.e_orient = zeros(3, maxloops);
+
+% PLOT -- manipulator configuration
+% configuration
+plt.q = zeros( 7, maxloops );
+% derivative of the configuration vector
+plt.q_dot = zeros( 7, maxloops );
 
 % PLOT -- position and orientation
 % position

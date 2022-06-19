@@ -8,6 +8,7 @@ figure( idx_plot ), grid on;
 title( "Activation Functions", "All the activation functions" );
 hold on;
 % plot( [0, plt.end_time], [1, 1], ':' );
+plot( plt.t, plt.A.zero, ':g' );
 plot( plt.t, plt.A.min_alt, '-b' );
 plot( plt.t, plt.A.hor_ctrl, '-r' );
 plot( plt.t, plt.A.align, '-m' );
@@ -18,6 +19,7 @@ plot( plt.t, plt.A.t, '-.k' );
 hold off;
 ylim( [0, 1.1] )
 legend( ...
+    'zero velocity constraint', ...
     'minimum altitude', ...
     'horizontal attitude', ...
     'alignment to the target', ...
@@ -100,6 +102,39 @@ legend( 'Wx', 'Wy', 'Wx' );
 hold off;
 % sgtitle( "plot(" + idx_plot + ") " + "Vehicle dotPosition and dotOrientation" );
 sgtitle( "Vehicle dotPosition and dotOrientation" );
+
+% PLOT -- vehicle position Vs end effector position
+idx_plot = idx_plot + 1;
+figure( idx_plot );
+subplot( 2, 1, 1 );
+hold on, grid on;
+plot( plt.t, plt.dot_pos(1, :), ':b' );
+plot( plt.t, plt.dot_pos(2, :), '-b' );
+plot( plt.t, plt.dot_pos(3, :), '--b' );
+% plot( plt.t, plt.orient(1, :), ':r' );
+% plot( plt.t, plt.orient(2, :), '-r' );
+% plot( plt.t, plt.orient(3, :), '--r' );
+title( "dot position" )
+% legend( 'Xdot', 'Ydot', 'Zdot', 'Wx', 'Wy', 'Wz' );
+legend( 'Xdot', 'Ydot', 'Zdot' );
+hold off;
+subplot( 2, 1, 2 );
+hold on, grid on;
+%{
+plot( plt.t, plt.q_dot(1, :) );
+plot( plt.t, plt.q_dot(2, :) );
+plot( plt.t, plt.q_dot(3, :) );
+plot( plt.t, plt.q_dot(4, :) );
+plot( plt.t, plt.q_dot(5, :) );
+plot( plt.t, plt.q_dot(6, :) );
+plot( plt.t, plt.q_dot(7, :) );
+%}
+plot( plt.t, plt.q_dot );
+title( "configuration rate" )
+legend( 'qdot_1', 'qdot_2', 'qdot_3', 'qdot_4', 'qdot_5', 'qdot_6', 'qdot_7' );
+hold off;
+% sgtitle( "plot(" + idx_plot + ") " + "Vehicle dotPosition and dotOrientation" );
+sgtitle( "Vehicle velocity Vs. Manipulator motion rate" );
 
 end
 
