@@ -1,8 +1,26 @@
 function [ ] = PrintPlot( plt )
 
-idx_plot = 1;
+idx_plot = 0;
+
+% PLOT -- manipulator joint limit constrant
+idx_plot = idx_plot + 1;
+figure( idx_plot ), grid on;
+title( "Joint Limit Constraint", "activation functions" );
+hold on;
+plot( plt.t, plt.A.cjoint );
+hold off;
+legend( ...
+    'a_j1', ...
+    'a_j2', ...
+    'a_j3', ...
+    'a_j4', ...
+    'a_j5', ...
+    'a_j6', ...
+    'a_j7' )
+
 
 % PLOT -- all the activations 
+idx_plot = idx_plot + 1;
 figure( idx_plot ), grid on;
 % title( "plot(" + idx_plot + ") " + "Activation Functions", "All the activation functions" );
 title( "Activation Functions", "All the activation functions" );
@@ -32,6 +50,7 @@ legend( ...
     '-- yaw', ...
     'manipulator task' )
 
+
 % PLOT -- minimum altitude and altitude control task
 idx_plot = idx_plot + 1;
 figure( idx_plot ), grid on;
@@ -44,6 +63,7 @@ hold off;
 legend( ...
     'minimum altitude', ...
     'zero altitude' )
+
 
 % PLOT -- end effector position
 idx_plot = idx_plot + 1;
@@ -58,6 +78,7 @@ legend( ...
     'Xe', ...
     'Ye', ...
     'Ze' );
+
 
 % PLOT -- (row 1) position and (row 2) orientation
 idx_plot = idx_plot + 1;
@@ -81,6 +102,7 @@ hold off;
 % sgtitle( "plot(" + idx_plot + ") " + "Vehicle Position and Orientation" );
 sgtitle( "Vehicle Position and Orientation" );
 
+
 % PLOT -- (row 1) dot position and (row 2) dot orientation
 idx_plot = idx_plot + 1;
 figure( idx_plot );
@@ -103,6 +125,7 @@ hold off;
 % sgtitle( "plot(" + idx_plot + ") " + "Vehicle dotPosition and dotOrientation" );
 sgtitle( "Vehicle dotPosition and dotOrientation" );
 
+
 % PLOT -- vehicle position Vs end effector position
 idx_plot = idx_plot + 1;
 figure( idx_plot );
@@ -120,15 +143,6 @@ legend( 'Xdot', 'Ydot', 'Zdot' );
 hold off;
 subplot( 2, 1, 2 );
 hold on, grid on;
-%{
-plot( plt.t, plt.q_dot(1, :) );
-plot( plt.t, plt.q_dot(2, :) );
-plot( plt.t, plt.q_dot(3, :) );
-plot( plt.t, plt.q_dot(4, :) );
-plot( plt.t, plt.q_dot(5, :) );
-plot( plt.t, plt.q_dot(6, :) );
-plot( plt.t, plt.q_dot(7, :) );
-%}
 plot( plt.t, plt.q_dot );
 title( "configuration rate" )
 legend( 'qdot_1', 'qdot_2', 'qdot_3', 'qdot_4', 'qdot_5', 'qdot_6', 'qdot_7' );

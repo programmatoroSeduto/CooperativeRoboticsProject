@@ -1,6 +1,7 @@
 function [ m ] = InitMission( deltat )
 
 m.mission_on = true;
+% m.mission_on = false;
 
 % contants for the mission phases
 idx = 0;

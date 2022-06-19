@@ -1,6 +1,8 @@
 function [ plt ] = UpdateDataPlot( plt, uvms, t, loop )
 
 % PLOT -- activation functions
+% joint limit constraint
+plt.A.cjoint(:, loop) = diag( uvms.A.cjoint );
 % zero velocity constraint
 plt.A.zero(:, loop) = uvms.A.zero(1, 1);
 % minimum altitude

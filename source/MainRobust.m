@@ -48,18 +48,22 @@ uvms.q = [-0.0031 0 0.0128 -1.2460 0.0137 0.0853-pi/2 0.0137]';
 % R(rot_x, rot_y, rot_z) = Rz (rot_z) * Ry(rot_y) * Rx(rot_x)
 % uvms.p = [8.5 38.5 -38   0 -0.06 0.5]'; 
 uvms.p = [ 8.5 38.5 -36 0 -0.06 0.5 ]'; 
+% uvms.p = [ 10.5 37.5 -35 0 0 -0.16 ]'; % test only
 
 % rock position 
 rock_center = [12.2025   37.3748  -39.8860]'; % in world frame coordinates
+% rock_center = [5.0   37.3748  -33.8860]'; % in world frame coordinates
 uvms.w_align_target = rock_center;
 
 % defines the goal position for the end-effector/tool position task
 uvms.goalPosition = [12.2025   37.3748  -39.8860]';
+% uvms.goalPosition = [5.0   37.3748  -33.8860]';
 uvms.wRg = rotation(0, pi, pi/2);
 uvms.wTg = [uvms.wRg uvms.goalPosition; 0 0 0 1];
 
 % defines the goal position for the vehicle position task
-uvms.vehicleGoalPosition = [10.5 37.5 -38]';
+% uvms.vehicleGoalPosition = [10.5 37.5 -38]';
+uvms.vehicleGoalPosition = [10.75 37.5 -38]';
 uvms.wRgv = rotation(0, -0.06, -0.5);
 uvms.wTgv = [uvms.wRgv uvms.vehicleGoalPosition; 0 0 0 1];
 
@@ -68,6 +72,12 @@ uvms.min_alt_value = 0;
 
 % defines the tool control point
 uvms.eTt = eye(4);
+
+% joint limit constraint average
+uvms.q_m = ( uvms.jlmin + uvms.jlmax ) / 2;
+% joint limit neighborhood
+uvms.eps = 0.9 * ( uvms.jlmax - uvms.jlmin );
+% uvms.eps = 0.9 * min( abs(uvms.jlmax), abs(uvms.jlmin) );
 
 tic
 for t = 0:deltat:end_time
@@ -92,6 +102,8 @@ for t = 0:deltat:end_time
     
     % zero velocity constraint
     [Qp, ydotbar] = iCAT_task(uvms.A.zero,    uvms.Jzero,  Qp, ydotbar, uvms.xdot.zero,  0.0001,   0.01, 10);
+	% joint limit constraint
+    [Qp, ydotbar] = iCAT_task(uvms.A.cjoint,    uvms.Jcjoint,  Qp, ydotbar, uvms.xdot.cjoint,  0.0001,   0.01, 10);
     % minimum altitude
     [Qp, ydotbar] = iCAT_task(uvms.A.ma,    uvms.Jma,  Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);
     % horizontal attitude

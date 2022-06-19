@@ -12,6 +12,9 @@ uvms.tool_lin = norm( lin );
 
 % ---
 
+% joint limit costraint
+uvms.xdot.cjoint = 0.2 * ( uvms.q_m - uvms.q );
+
 % zero velocity constraint
 uvms.xdot.zero = 0.5 * ( zeros(6, 1) - uvms.p_dot );
 

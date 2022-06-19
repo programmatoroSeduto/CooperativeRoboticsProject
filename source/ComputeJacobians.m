@@ -38,6 +38,9 @@ uvms.Jt = [uvms.Jt_a uvms.Jt_v];
 
 % ---
 
+% joint limit constraint
+uvms.Jcjoint = [ eye(7, 7), zeros(7, 6) ];
+
 % zero velocity constraint
 uvms.Jzero = [ zeros(6, 7), [uvms.wTv(1:3, 1:3); zeros(3)], [zeros(3); uvms.wTv(1:3, 1:3)] ];
 

@@ -6,6 +6,8 @@ plt.t = 0:deltat:end_time;
 plt.end_time = end_time;
 
 % PLOT -- activation functions
+% joint limit constraint
+plt.A.cjoint = zeros(7, maxloops);
 % zero velocity constraint
 plt.A.zero = zeros(1, maxloops);
 % minimum altitude
