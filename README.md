@@ -3,7 +3,7 @@
 ## Exercise 1: Implement a “Safe Waypoint Navigation” Action
 
 - [**Exercise 1.1**](https://github.com/programmatoroSeduto/CooperativeRoboticsProject/tree/ex1part1): Adding a vehicle position control objective
-- [**Exercise 1.2**](https://github.com/programmatoroSedutoCooperativeRoboticsProject/tree/ex1part2): Adding a safety minimum altitude control objective
+- [**Exercise 1.2**](https://github.com/programmatoroSeduto/CooperativeRoboticsProject/tree/ex1part2): Adding a safety minimum altitude control objective
 
 
 ## Exercise 2:  Implement a Basic “Landing” Action
