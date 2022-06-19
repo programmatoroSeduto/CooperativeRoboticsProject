@@ -16,6 +16,16 @@ plt.A.land = zeros(1, maxloops);
 plt.A.pos = zeros(3, maxloops);
 % orientation control task
 plt.A.orient = zeros(3, maxloops);
+% vehicle alignment to a target
+plt.A.align = zeros(1, maxloops);
+% tool frame motion
+plt.A.t = zeros(6, maxloops);
+
+% PLOT -- manupulator tool frame pos and orientaton
+% position
+plt.e_pos = zeros(3, maxloops);
+% orientation
+% plt.e_orient = zeros(3, maxloops);
 
 % PLOT -- position and orientation
 % position

@@ -6,5 +6,10 @@ uvms.vTw = inv(uvms.wTv);
 uvms.vTg = uvms.vTw*uvms.wTg;
 [uvms.bJe, uvms.djdq, uvms.bTe] = JacobianMaris2(uvms.q);
 uvms.vTe = uvms.vTb*uvms.bTe;
+
+% ---
+uvms.wTe = uvms.wTv*uvms.vTe;
+% ---
+
 uvms.vTt = uvms.vTe*uvms.eTt;
 uvms.wTt = uvms.wTv*uvms.vTt;

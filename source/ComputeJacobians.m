@@ -34,6 +34,7 @@ uvms.Jt_a  = uvms.Ste * [uvms.vTb(1:3,1:3) zeros(3,3); zeros(3,3) uvms.vTb(1:3,1
 uvms.Jt_v = [zeros(3) eye(3); eye(3) -skew(uvms.vTt(1:3,4))];
 % juxtapose the two Jacobians to obtain the global one
 uvms.Jt = [uvms.Jt_a uvms.Jt_v];
+% uvms.Jt = [uvms.Jt_a zeros( 6, 6 )];
 
 % ---
 

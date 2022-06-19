@@ -47,7 +47,7 @@ uvms.q = [-0.0031 0 0.0128 -1.2460 0.0137 0.0853-pi/2 0.0137]';
 % RPY angles are applied in the following sequence
 % R(rot_x, rot_y, rot_z) = Rz (rot_z) * Ry(rot_y) * Rx(rot_x)
 % uvms.p = [8.5 38.5 -38   0 -0.06 0.5]'; 
-uvms.p = [8.5 38.5 -36 0 -0.06 0.5 ]'; 
+uvms.p = [ 8.5 38.5 -36 0 -0.06 0.5 ]'; 
 
 % rock position 
 rock_center = [12.2025   37.3748  -39.8860]'; % in world frame coordinates
@@ -88,20 +88,22 @@ for t = 0:deltat:end_time
     ydotbar = zeros(13,1);
     Qp = eye(13); 
     
-    % ---s
+    % ---
 
     % minimum altitude
-     [Qp, ydotbar] = iCAT_task(uvms.A.ma,    uvms.Jma,  Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);
+    [Qp, ydotbar] = iCAT_task(uvms.A.ma,    uvms.Jma,  Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);
     % horizontal attitude
     [Qp, ydotbar] = iCAT_task(uvms.A.ha,    uvms.Jha,  Qp, ydotbar, uvms.xdot.ha,  0.0001,   0.01, 10);
     % alignment task
     [Qp, ydotbar] = iCAT_task(uvms.A.align,    uvms.Jalign,  Qp, ydotbar, uvms.xdot.align,  0.0001,   0.01, 10);
     % landing action
     [Qp, ydotbar] = iCAT_task(uvms.A.a,    uvms.Ja,  Qp, ydotbar, uvms.xdot.a,  0.0001,   0.01, 10);
+    % manipulator tip motion
+    [Qp, ydotbar] = iCAT_task(uvms.A.t,     uvms.Jt,   Qp, ydotbar, uvms.xdot.t,  0.0001,   0.01, 10);
     % Position Control Task
-     [Qp, ydotbar] = iCAT_task(uvms.A.v_l,   uvms.Jv_l, Qp, ydotbar, uvms.xdot.v_l,  0.0001,   0.01, 10);    
+    [Qp, ydotbar] = iCAT_task(uvms.A.v_l,   uvms.Jv_l, Qp, ydotbar, uvms.xdot.v_l,  0.0001,   0.01, 10);    
     % Orientation Control Task
-     [Qp, ydotbar] = iCAT_task(uvms.A.v_a,   uvms.Jv_a, Qp, ydotbar, uvms.xdot.v_a,  0.0001,   0.01, 10);
+    [Qp, ydotbar] = iCAT_task(uvms.A.v_a,   uvms.Jv_a, Qp, ydotbar, uvms.xdot.v_a,  0.0001,   0.01, 10);
     
     % ---
     
@@ -132,6 +134,7 @@ for t = 0:deltat:end_time
         % uvms.sensorDistance
         % uvms.A.ma
         % uvms.xdot.ma
+        % uvms.wTe( 1:3, 4 )
     end
 
     % enable this to have the simulation approximately evolving like real
