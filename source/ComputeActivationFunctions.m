@@ -9,7 +9,11 @@ uvms.A.t = eye(6);
 uvms.A.v_l = eye(3);
 uvms.A.v_a = eye(3);
 
-%horizontal attitude
-uvms.A.ha = IncreasingBellShapedFunction(0.2, 0.4, 0, 1, norm(uvms.v_rho_ha));
+% horizontal attitude
+uvms.A.ha = IncreasingBellShapedFunction(0.2, 0.4, 0, 1, norm(uvms.v_rho_ha) );
+
+% minimum altitude 
+uvms.A.ma = DecreasingBellShapedFunction(uvms.min_alt_value + 1, uvms.min_alt_value + 2, 0, 1, uvms.a );
+
 
 end
