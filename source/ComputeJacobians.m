@@ -63,6 +63,12 @@ end
 % preferred shape task
 uvms.Jsh = [ eye(4, 4), zeros(4, 3), zeros(4, 6) ];
 
+% vehicle underactuation
+uvms.Jund = [zeros(6,7) eye(6)];
+
+% vehicle constrained velocity
+uvms.Jvcv = [zeros(6,7) eye(6)];
+
 % target alignment task
 %{
 w_iv = uvms.wTv(1:3, 1:3) * [1 0 0]';

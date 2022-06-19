@@ -42,12 +42,12 @@ if mission.mission_on
             uvms.Ap.v_l = 0;
             uvms.Ap.v_a = 0;
         case mission.ph.stop
-            uvms.Ap.cjoint = 0;
-            uvms.Ap.zero = 0;
+            uvms.Ap.cjoint = 1;
+            uvms.Ap.zero = 1;
             uvms.Ap.ha = 0;
             % uvms.Ap.align = 0;
-            uvms.Ap.sh = 0;
-            uvms.Ap.t = 0;
+            uvms.Ap.sh = 1;
+            uvms.Ap.t = 1;
             uvms.Ap.v_l = 0;
             uvms.Ap.v_a = 0;
     end

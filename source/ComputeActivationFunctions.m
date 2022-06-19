@@ -59,6 +59,12 @@ if uvms.Ap.sh > .0
     end
 end
 
+%vehicle underactuation
+uvms.A.und = diag([0 0 0 0 1 0]);
+
+%vehicle constrained velocity
+uvms.A.vcv = eye(6);
+
 % alignment task
 % uvms.A.align = IncreasingBellShapedFunction(0.001, 0.05, 0, 1, norm(uvms.w_rho_align))*uvms.Ap.align;
 

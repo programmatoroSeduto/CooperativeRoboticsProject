@@ -1,4 +1,4 @@
-# Exercise 5 Part 2
+# Exercise 6
 
 Cooperative Robotics Project -- MATLAB implementation
 

@@ -6,7 +6,7 @@ close all
 
 % Simulation variables (integration and final time)
 deltat = 0.005;
-end_time = 25;
+end_time = 45;
 loop = 1;
 maxloops = ceil(end_time/deltat);
 
@@ -118,24 +118,29 @@ for t = 0:deltat:end_time
     
     % ---
     
+    % === TPIK 1 (vehicle) ===
+    
+    % underactuation task
+    [Qp, rhop] = iCAT_task(uvms.A.und,    uvms.Jund,  Qp, rhop, uvms.xdot.und,  0.0001,   0.01, 10);
     % zero velocity constraint
     [Qp, rhop] = iCAT_task(uvms.A.zero,    uvms.Jzero,  Qp, rhop, uvms.xdot.zero,  0.0001,   0.01, 10);
-	% joint limit constraint
-    [Qp, rhop] = iCAT_task(uvms.A.cjoint,    uvms.Jcjoint,  Qp, rhop, uvms.xdot.cjoint,  0.0001,   0.01, 10);
-    % minimum altitude
-    % [Qp, rhop] = iCAT_task(uvms.A.ma,    uvms.Jma,  Qp, rhop, uvms.xdot.ma,  0.0001,   0.01, 10);
     % horizontal attitude
     [Qp, rhop] = iCAT_task(uvms.A.ha,    uvms.Jha,  Qp, rhop, uvms.xdot.ha,  0.0001,   0.01, 10);
-    % alignment task
-    % [Qp, rhop] = iCAT_task(uvms.A.align,    uvms.Jalign,  Qp, rhop, uvms.xdot.align,  0.0001,   0.01, 10);
-    % landing action
-    % [Qp, rhop] = iCAT_task(uvms.A.a,    uvms.Ja,  Qp, rhop, uvms.xdot.a,  0.0001,   0.01, 10);
-    % manipulator tip motion
-    [Qp, rhop] = iCAT_task(uvms.A.t,     uvms.Jt,   Qp, rhop, uvms.xdot.t,  0.0001,   0.01, 10);
     % Position Control Task
     [Qp, rhop] = iCAT_task(uvms.A.v_l,   uvms.Jv_l, Qp, rhop, uvms.xdot.v_l,  0.0001,   0.01, 10);    
     % Orientation Control Task
     [Qp, rhop] = iCAT_task(uvms.A.v_a,   uvms.Jv_a, Qp, rhop, uvms.xdot.v_a,  0.0001,   0.01, 10);
+    
+    uvms.p_dot_ref = rhop(8:13);
+    
+    % === TPIK 2 (manipulator) ===
+    
+    % vehicle constraint velocity
+    [Qp, rhop] = iCAT_task(uvms.A.vcv,    uvms.Jvcv,  Qp, rhop, uvms.xdot.vcv,  0.0001,   0.01, 10);
+	% joint limit constraint
+    [Qp, rhop] = iCAT_task(uvms.A.cjoint,    uvms.Jcjoint,  Qp, rhop, uvms.xdot.cjoint,  0.0001,   0.01, 10);
+    % manipulator tip motion
+    [Qp, rhop] = iCAT_task(uvms.A.t,     uvms.Jt,   Qp, rhop, uvms.xdot.t,  0.0001,   0.01, 10);
     % preferred shape task
     [Qp, rhop] = iCAT_task(uvms.A.sh,     uvms.Jsh,   Qp, rhop, uvms.xdot.sh,  0.0001,   0.01, 10);
     
@@ -145,7 +150,12 @@ for t = 0:deltat:end_time
     
     % get the two variables for integration
     uvms.q_dot = rhop(1:7);
-    uvms.p_dot = rhop(8:13);
+    uvms.p_dot = uvms.p_dot_ref;
+    
+    % apply disturbances on the pitch
+    % uvms.p_dot(5) = uvms.p_dot(5) + 0.002*sin(2*pi*0.5*t);
+    % uvms.p_dot(5) = 0.1*sin(2*pi*0.5*t) + 0.01*(2*rand - 1);
+    uvms.p_dot(5) = 0.05*sin(2*pi*0.5*t);
     
     % Integration
 	uvms.q = uvms.q + uvms.q_dot*deltat;

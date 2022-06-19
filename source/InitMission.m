@@ -33,7 +33,7 @@ m.trans_nav.trans_time = 5.0;
 
 % phase: manipulation
 m.manipulation.dist = Inf;
-m.manipulation.threshold = 0.01;
+m.manipulation.threshold = 0.1;
 
 end
 

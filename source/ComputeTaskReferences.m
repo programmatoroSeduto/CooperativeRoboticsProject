@@ -32,6 +32,12 @@ uvms.xdot.ha = 0.5 *(0 - norm(uvms.v_rho_ha));
 % preferred shape task
 uvms.xdot.sh = 0.5 * ( uvms.q_sh - uvms.q(1:4) );
 
+% reference for the underactuation task
+uvms.xdot.und = uvms.p_dot;
+
+% reference for the vehicle constrained velocity task
+uvms.xdot.vcv = uvms.p_dot;
+
 % target alignment task
 % uvms.xdot.align = 0.5 * (0 - norm( uvms.w_rho_align ));
 
