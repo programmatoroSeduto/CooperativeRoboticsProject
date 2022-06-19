@@ -23,9 +23,6 @@ u_pipe_center = [-10.66 31.47 -1.94]'; % in unity coordinates
 pipe_center = wuRw'*u_pipe_center;     % in world frame coordinates
 pipe_radius = 0.3;
 
-% rock position 
-rock_center = [12.2025   37.3748  -39.8860]'; % in world frame coordinates
-
 % UDP Connection with Unity viewer v2
 uArm = udp('127.0.0.1',15000,'OutputDatagramPacketSize',28);
 uVehicle = udp('127.0.0.1',15001,'OutputDatagramPacketSize',24);
@@ -50,7 +47,11 @@ uvms.q = [-0.0031 0 0.0128 -1.2460 0.0137 0.0853-pi/2 0.0137]';
 % RPY angles are applied in the following sequence
 % R(rot_x, rot_y, rot_z) = Rz (rot_z) * Ry(rot_y) * Rx(rot_x)
 % uvms.p = [8.5 38.5 -38   0 -0.06 0.5]'; 
-uvms.p = [8.5 38.5 -36 0 -0.06 0.5]'; 
+uvms.p = [8.5 38.5 -36 0 -0.06 0.5 ]'; 
+
+% rock position 
+rock_center = [12.2025   37.3748  -39.8860]'; % in world frame coordinates
+uvms.w_align_target = rock_center;
 
 % defines the goal position for the end-effector/tool position task
 uvms.goalPosition = [12.2025   37.3748  -39.8860]';
@@ -87,12 +88,14 @@ for t = 0:deltat:end_time
     ydotbar = zeros(13,1);
     Qp = eye(13); 
     
-    % ---
+    % ---s
 
     % minimum altitude
      [Qp, ydotbar] = iCAT_task(uvms.A.ma,    uvms.Jma,  Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);
     % horizontal attitude
     [Qp, ydotbar] = iCAT_task(uvms.A.ha,    uvms.Jha,  Qp, ydotbar, uvms.xdot.ha,  0.0001,   0.01, 10);
+    % alignment task
+    [Qp, ydotbar] = iCAT_task(uvms.A.align,    uvms.Jalign,  Qp, ydotbar, uvms.xdot.align,  0.0001,   0.01, 10);
     % landing action
     [Qp, ydotbar] = iCAT_task(uvms.A.a,    uvms.Ja,  Qp, ydotbar, uvms.xdot.a,  0.0001,   0.01, 10);
     % Position Control Task

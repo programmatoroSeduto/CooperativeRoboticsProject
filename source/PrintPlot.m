@@ -36,7 +36,8 @@ idx_plot = 1;
 
 % PLOT -- all the activations 
 figure( idx_plot ), grid on;
-title( "plot(" + idx_plot + ") " + "Activation Functions", "All the activation functions" );
+% title( "plot(" + idx_plot + ") " + "Activation Functions", "All the activation functions" );
+title( "Activation Functions", "All the activation functions" );
 hold on;
 % plot( [0, plt.end_time], [1, 1], ':' );
 plot( plt.t, plt.A.min_alt, '-b' );
@@ -60,7 +61,8 @@ legend( ...
 % PLOT -- minimum altitude and altitude control task
 idx_plot = idx_plot + 1;
 figure( idx_plot ), grid on;
-title( "plot(" + idx_plot + ") " + "Activation Functions", "minimum altitude Vs. altitude control task" );
+% title( "plot(" + idx_plot + ") " + "Activation Functions", "minimum altitude Vs. altitude control task" );
+title( "Activation Functions", "minimum altitude Vs. altitude control task" );
 hold on;
 plot( plt.t, plt.A.min_alt, '-b' );
 plot( plt.t, plt.A.land, '--b' );
@@ -88,7 +90,8 @@ plot( plt.t, plt.orient(3, :), '-k' );
 title( "orientation" )
 legend( 'roll (x)', 'pitch (y)', 'yaw (z)' );
 hold off;
-sgtitle( "plot(" + idx_plot + ") " + "Vehicle Position and Orientation" );
+% sgtitle( "plot(" + idx_plot + ") " + "Vehicle Position and Orientation" );
+sgtitle( "Vehicle Position and Orientation" );
 
 % PLOT -- (row 1) dot position and (row 2) dot orientation
 idx_plot = idx_plot + 1;
@@ -109,7 +112,8 @@ plot( plt.t, plt.dot_orient(3, :), '-k' );
 title( "dot orientation" )
 legend( 'Wx', 'Wy', 'Wx' );
 hold off;
-sgtitle( "plot(" + idx_plot + ") " + "Vehicle dotPosition and dotOrientation" );
+% sgtitle( "plot(" + idx_plot + ") " + "Vehicle dotPosition and dotOrientation" );
+sgtitle( "Vehicle dotPosition and dotOrientation" );
 
 end
 

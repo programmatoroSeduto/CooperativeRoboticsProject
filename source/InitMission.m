@@ -1,5 +1,7 @@
 function [ m ] = InitMission( deltat )
 
+m.mission_on = true;
+
 % contants for the mission phases
 m.ph.a1 = 0;       % reach the target point
 m.ph.a1_to_a2 = 1; % transient from A1 to A2
