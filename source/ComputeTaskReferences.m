@@ -22,6 +22,10 @@ uvms.xdot.ha = 0.2 *(0 - norm(uvms.v_rho_ha));
 
 % reference for the minimum altitude task
 uvms.xdot.ma = 0.5*(uvms.min_alt_value + 2 - uvms.a);
+
+% reference for the landing action 
+uvms.xdot.a = 0.2 * (0 - uvms.a);
+
 % ---
 
 end
