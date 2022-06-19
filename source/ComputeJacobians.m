@@ -58,6 +58,9 @@ v_d = [ 0 0 uvms.sensorDistance ]';
 uvms.a = v_kw' * v_d;
 uvms.Jma = [ zeros(1,7) v_kw' zeros(1,3) ];
 
+% vehicle altitude 
+uvms.Ja = [zeros(1,7) v_kw' zeros(1,3)];
+
 % ---
 
 end

@@ -1,30 +1,27 @@
 function [ plt ] = UpdateDataPlot( plt, uvms, t, loop )
 
-% this function samples the variables contained in the structure uvms
-% and saves them in arrays inside the struct plt
-% this allows to have the time history of the data for later plots
+% PLOT -- activation functions
+% minimum altitude
+plt.A.min_alt(:, loop) = uvms.A.ma;
+% horizontal attitude
+plt.A.hor_ctrl(:, loop) = uvms.A.ha; 
+% landing action
+plt.A.land(:, loop) = uvms.A.a;
+% position control task
+plt.A.pos(:, loop) = [ uvms.A.v_l(1, 1) uvms.A.v_l(2, 2) uvms.A.v_l(3, 3) ]';
+% orientation control task
+plt.A.orient(:, loop) = [ uvms.A.v_a(1, 1) uvms.A.v_a(2, 2) uvms.A.v_a(3, 3) ]';
 
-% you can add whatever sampling you need to do additional plots
-% plots are done in the PrintPlot.m script
+% PLOT -- position and orientation
+% position
+plt.pos(:, loop) = uvms.p( 1:3 );
+% orientation
+plt.orient(:, loop) = uvms.p( 4:6 );
 
-plt.t(loop) = t;
+% PLOT -- dot position and dot orientation
+% dot position
+plt.dot_pos(:, loop) = uvms.p_dot( 1:3 );
+% dot orientation
+plt.dot_orient(:, loop) = uvms.p_dot( 4:6 );
 
-plt.toolPos(:, loop) = uvms.wTt(1:3,4);
-
-plt.q(:, loop) = uvms.q;
-plt.q_dot(:, loop) = uvms.q_dot;
-
-plt.p(:, loop) = uvms.p;
-plt.p_dot(:, loop) = uvms.p_dot;
-
-%plt.xdot_jl(:, loop) = uvms.xdot.jl;
-%plt.xdot_mu(:, loop) = uvms.xdot.mu;
-plt.xdot_t(:, loop) =  blkdiag(uvms.wTv(1:3,1:3), uvms.wTv(1:3,1:3))*uvms.xdot.t;
-
-plt.a(1:7, loop) = diag(uvms.A.jl);
-plt.a(8, loop) = uvms.A.ma;
-plt.a(9, loop) = uvms.A.ha(1,1);
-
-plt.toolx(:,loop) = uvms.wTt(1,4);
-plt.tooly(:,loop) = uvms.wTt(2,4);
 end

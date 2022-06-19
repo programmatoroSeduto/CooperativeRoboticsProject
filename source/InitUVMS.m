@@ -57,17 +57,31 @@ uvms.A.t = zeros(6,6);
 
 uvms.Jv_l = [];
 uvms.Jv_a = [];
+uvms.Jha = [];
+uvms.Jma = [];
+uvms.Ja = [];
 
 uvms.v_rho_ha = [];
 uvms.v_n_ha = [];
-uvms.Jha = [];
+uvms.a = [];
 
 uvms.xdot.v_l = [];
 uvms.xdot.v_a = [];
-uvms.xdot.ha = 0;
+uvms.xdot.ha = [];
+uvms.xdot.ma = [];
+uvms.xdot.a = [];
 
 uvms.A.v_l = [];
 uvms.A.v_a = [];
+uvms.A.ma = 0;
+uvms.A.a = 0;
+
+uvms.Ap.v_l = zeros(3);
+uvms.Ap.v_a = zeros(3);
+uvms.Ap.ha = 0;
+uvms.Ap.ma = 0;
+uvms.Ap.a = 0;
+
 
 % ---
 
