@@ -125,7 +125,7 @@ for t = 0:deltat:end_time
     % zero velocity constraint
     [Qp, rhop] = iCAT_task(uvms.A.zero,    uvms.Jzero,  Qp, rhop, uvms.xdot.zero,  0.0001,   0.01, 10);
     % horizontal attitude
-    [Qp, rhop] = iCAT_task(uvms.A.ha,    uvms.Jha,  Qp, rhop, uvms.xdot.ha,  0.0001,   0.01, 10);
+    % [Qp, rhop] = iCAT_task(uvms.A.ha,    uvms.Jha,  Qp, rhop, uvms.xdot.ha,  0.0001,   0.01, 10);
     % Position Control Task
     [Qp, rhop] = iCAT_task(uvms.A.v_l,   uvms.Jv_l, Qp, rhop, uvms.xdot.v_l,  0.0001,   0.01, 10);    
     % Orientation Control Task
