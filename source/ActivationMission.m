@@ -45,7 +45,7 @@ if mission.mission_on
     end
 else
     uvms.Ap.cjoint = 0;
-    uvms.Ap.zero = 0;
+    uvms.Ap.zero = 1;
     uvms.Ap.ma = 0;
     % uvms.Ap.align = 0;
     uvms.Ap.v_l = 0;
