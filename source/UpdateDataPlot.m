@@ -6,17 +6,17 @@ plt.A.cjoint(:, loop) = diag( uvms.A.cjoint );
 % zero velocity constraint
 plt.A.zero(:, loop) = uvms.A.zero(1, 1);
 % minimum altitude
-plt.A.min_alt(:, loop) = uvms.A.ma;
+% plt.A.min_alt(:, loop) = uvms.A.ma;
 % horizontal attitude
 plt.A.hor_ctrl(:, loop) = uvms.A.ha; 
 % landing action
-plt.A.land(:, loop) = uvms.A.a;
+% plt.A.land(:, loop) = uvms.A.a;
 % position control task
 plt.A.pos(:, loop) = [ uvms.A.v_l(1, 1) uvms.A.v_l(2, 2) uvms.A.v_l(3, 3) ]';
 % orientation control task
 plt.A.orient(:, loop) = [ uvms.A.v_a(1, 1) uvms.A.v_a(2, 2) uvms.A.v_a(3, 3) ]';
 % vehicle alignment to a target
-plt.A.align(:, loop) = uvms.A.align;
+% plt.A.align(:, loop) = uvms.A.align;
 % tool frame motion
 plt.A.t(:, loop) = [ uvms.A.t(1, 1) uvms.A.t(2, 2) uvms.A.t(3, 3) ...
                     uvms.A.t(4, 4) uvms.A.t(5, 5) uvms.A.t(6, 6) ]';

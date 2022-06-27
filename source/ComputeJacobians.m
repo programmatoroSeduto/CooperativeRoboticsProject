@@ -61,6 +61,7 @@ else
 end
 
 % target alignment task
+%{
 w_iv = uvms.wTv(1:3, 1:3) * [1 0 0]';
 w_iv_orth = ( eye(3, 3) - w_kw * w_kw' ) * w_iv;
 w_dtilde = ( eye(3, 3) - w_kw * w_kw' ) * ( uvms.w_align_target - uvms.p(1:3) );
@@ -69,14 +70,17 @@ uvms.w_rho_align = ReducedVersorLemma( w_ntilde, w_iv_orth );
 th_tg_align = norm( uvms.w_rho_align );
 w_v_align = ( skew(w_ntilde)*w_iv_orth ) / sin( th_tg_align );
 uvms.Jalign = [ zeros(1, 7), zeros(1, 3), w_v_align'*uvms.wTv(1:3, 1:3) ];
+%}
 
 % minimum altitude
+%{
 v_d = [ 0 0 uvms.sensorDistance ]'; 
 uvms.a = v_kw' * v_d;
 uvms.Jma = [ zeros(1,7) v_kw' zeros(1,3) ];
+%}
 
 % vehicle altitude 
-uvms.Ja = [zeros(1,7) v_kw' zeros(1,3)];
+% uvms.Ja = [zeros(1,7) v_kw' zeros(1,3)];
 
 % ---
 

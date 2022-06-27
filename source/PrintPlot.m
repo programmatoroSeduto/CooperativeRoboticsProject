@@ -27,10 +27,10 @@ title( "Activation Functions", "All the activation functions" );
 hold on;
 % plot( [0, plt.end_time], [1, 1], ':' );
 plot( plt.t, plt.A.zero, ':g' );
-plot( plt.t, plt.A.min_alt, '-b' );
+% plot( plt.t, plt.A.min_alt, '-b' );
 plot( plt.t, plt.A.hor_ctrl, '-r' );
-plot( plt.t, plt.A.align, '-m' );
-plot( plt.t, plt.A.land, '-.b' );
+% plot( plt.t, plt.A.align, '-m' );
+% plot( plt.t, plt.A.land, '-.b' );
 plot( plt.t, plt.A.pos, '--b' );
 plot( plt.t, plt.A.orient, '--r' );
 plot( plt.t, plt.A.t, '-.k' );
@@ -38,10 +38,7 @@ hold off;
 ylim( [0, 1.1] )
 legend( ...
     'zero velocity constraint', ...
-    'minimum altitude', ...
     'horizontal attitude', ...
-    'alignment to the target', ...
-    'zero altitude', ...
     'vehicle position control -- x', ...
     '-- y', ...
     '-- z', ...
@@ -52,6 +49,7 @@ legend( ...
 
 
 % PLOT -- minimum altitude and altitude control task
+%{
 idx_plot = idx_plot + 1;
 figure( idx_plot ), grid on;
 % title( "plot(" + idx_plot + ") " + "Activation Functions", "minimum altitude Vs. altitude control task" );
@@ -63,7 +61,7 @@ hold off;
 legend( ...
     'minimum altitude', ...
     'zero altitude' )
-
+%}
 
 % PLOT -- end effector position
 idx_plot = idx_plot + 1;
